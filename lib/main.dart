@@ -44,7 +44,7 @@ class _CalculatorState extends State<Calculator> {
                   FlatButton(
                     child: Text('+'),
                     onPressed: () {
-                       // Handle '*' option press here
+                      // Handle '*' option press here
                       dupResult = text;
                       check = 1;
                       print(
@@ -91,41 +91,47 @@ class _CalculatorState extends State<Calculator> {
     //Calculator
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text('Calculator'),
-        backgroundColor: Colors.black,
-      ),
+      
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             // Calculator display
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      '$text',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 100,
-                      ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Expanded(
+                child: Container(
+                  height: 250,
+                color: Color.fromARGB(255, 43, 39, 38),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            '$text',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 100,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('A', Colors.grey, Colors.black),
-                calcbutton('-', Colors.grey, Colors.black),
-                calcbutton('%', Colors.grey, Colors.black),
+                calcbutton('A', Color.fromARGB(255, 208, 7, 192), Colors.white),
+                calcbutton('-', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('%', Color.fromARGB(255, 40, 38, 38), Colors.white),
                 calcbutton('/', Colors.amber, Colors.white),
               ],
             ),
@@ -135,9 +141,9 @@ class _CalculatorState extends State<Calculator> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('7', Colors.grey, Colors.white),
-                calcbutton('8', Colors.grey, Colors.white),
-                calcbutton('9', Colors.grey, Colors.white),
+                calcbutton('7', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('8', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('9', Color.fromARGB(255, 40, 38, 38), Colors.white),
                 calcbutton('x', Colors.amber, Colors.white),
               ],
             ),
@@ -147,9 +153,9 @@ class _CalculatorState extends State<Calculator> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('4', Colors.grey, Colors.white),
-                calcbutton('5', Colors.grey, Colors.white),
-                calcbutton('6', Colors.grey, Colors.white),
+                calcbutton('4', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('5', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('6', Color.fromARGB(255, 40, 38, 38), Colors.white),
                 calcbutton('-', Colors.amber, Colors.white),
               ],
             ),
@@ -159,9 +165,9 @@ class _CalculatorState extends State<Calculator> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('1', Colors.grey, Colors.white),
-                calcbutton('2', Colors.grey, Colors.white),
-                calcbutton('3', Colors.grey, Colors.white),
+                calcbutton('1', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('2', Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('3', Color.fromARGB(255, 40, 38, 38), Colors.white),
                 calcbutton('+', Colors.amber, Colors.white),
               ],
             ),
@@ -172,20 +178,40 @@ class _CalculatorState extends State<Calculator> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 //this is button Zero
-                RaisedButton(
-                  padding: EdgeInsets.fromLTRB(34, 20, 128, 20),
-                  onPressed: () {
-                    calculation('0');
-                  },
-                  shape: StadiumBorder(),
-                  child: Text(
-                    '0',
-                    style: TextStyle(fontSize: 35, color: Colors.white),
-                  ),
-                  color: Colors.grey,
-                ),
-                calcbutton('.', Colors.grey, Colors.white),
+                calcbutton("0", Color.fromARGB(255, 40, 38, 38), Colors.white),
+                calcbutton('.', Color.fromARGB(255, 40, 38, 38), Colors.white),
                 //  calcbutton('=',Colors.amber,Colors.white),
+                Container(
+                    child: ElevatedButton(
+                  onPressed: () {
+                    /* Your code here */
+                    calculation('d');
+                  },
+                  child: Container(
+                    //width: double.infinity,
+                    //height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                        //SizedBox(width: 8),
+                        Text(
+                          "",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.grey,
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(20),
+                  ),
+                )),
                 InkWell(
                   onLongPress: () {
                     // Show pop-up menu here
@@ -285,9 +311,7 @@ class _CalculatorState extends State<Calculator> {
         } else {
           finalResult = sub();
         }
-     
       } else if (opr == 'x') {
-        
         if (check == 1) {
           print("final result is manipulated");
           finalResult = dupResult;
@@ -296,7 +320,7 @@ class _CalculatorState extends State<Calculator> {
         }
       } else if (opr == '/') {
         finalResult = div();
-         if (check == 1) {
+        if (check == 1) {
           print("final result is manipulated");
           finalResult = dupResult;
         } else {
@@ -319,6 +343,10 @@ class _CalculatorState extends State<Calculator> {
       result.toString().startsWith('-')
           ? result = result.toString().substring(1)
           : result = '-' + result.toString();
+      finalResult = result;
+    } else if (btnText == "d") {
+      result = result.toString().substring(0, result.toString().length - 1);
+      // finalResult = finalResult.substring(0, finalResult.length - 1);
       finalResult = result;
     } else {
       result = result + btnText;
