@@ -73,7 +73,7 @@ class _CalculatorState extends State<Calculator> {
         child: Text(
           btntxt,
           style: TextStyle(
-            fontSize: 35,
+            fontSize: 40,
             color: txtcolor,
           ),
         ),
@@ -100,31 +100,36 @@ class _CalculatorState extends State<Calculator> {
             // Calculator display
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Expanded(
-                child: Container(
-                  height: 250,
-                color: Color.fromARGB(255, 43, 39, 38),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            '$text',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 100,
+              child: Container(
+                child: Expanded(
+                  child: Container(
+                    height: 280,
+                  color: Color.fromARGB(255, 43, 39, 38),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              '$text',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 100,
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
+            ),
+             SizedBox(
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
