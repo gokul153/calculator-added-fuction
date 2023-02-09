@@ -34,22 +34,26 @@ class _CalculatorState extends State<Calculator> {
                 title: Text('Enter the value '),
                 actions: <Widget>[
                   FlatButton(
-                    child: Text('*'),
+                    child: Text('+'),
                     onPressed: () {
                       // Handle '*' option press here
                       dupResult = value;
                       check = 1;
+                      acheck = 1;
+                      mcheck = 0;
                       print(
                           "result is fixed as $dupResult and check is $check");
                       Navigator.of(context).pop();
                     },
                   ),
                   FlatButton(
-                    child: Text('+'),
+                    child: Text('*'),
                     onPressed: () {
                       // Handle '*' option press here
-                      dupResult = text;
+                      dupResult = value;
                       check = 1;
+                      mcheck = 1;
+                      acheck = 0;
                       print(
                           "result is fixed as $dupResult and check is $check");
                       //Navigator.of(context).pop();
@@ -70,10 +74,10 @@ class _CalculatorState extends State<Calculator> {
     return Container(
       child: Container(
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: btncolor,
-          border: Border.all(color: btncolor, width: 2),
-        ),
+            // shape: BoxShape.circle,
+            // color: btncolor,
+            //border: Border.all(color: btncolor, width: 0),
+            ),
         child: ElevatedButton(
           onPressed: () {
             //to add functpm
@@ -82,13 +86,14 @@ class _CalculatorState extends State<Calculator> {
           child: Text(
             btntxt,
             style: TextStyle(
-              fontSize: 50,
+              fontSize: 35,
               color: txtcolor,
             ),
           ),
           style: ElevatedButton.styleFrom(
+            elevation: 0.0,
             primary: btncolor,
-            minimumSize: Size(75, 50),
+            //minimumSize: Size(75, 50),
             //fixedSize: Size(75, 75),
             shape: CircleBorder(),
             padding: EdgeInsets.all(20),
@@ -102,41 +107,68 @@ class _CalculatorState extends State<Calculator> {
   Widget build(BuildContext context) {
     //Calculator
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 2),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Calculator display
             Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  //width: double.maxFinite,
-                  color: Color.fromARGB(255, 43, 39, 38),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 50,
+              child: Container(
+                // height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width * 1,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            child: AutoSizeText(
+                              '$dispresult\n',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 43, 39, 38),
+                                fontSize: 50,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(0),
+                              padding: const EdgeInsetsDirectional.only(
+                                  bottom: 5, top: 10),
                               child: Container(
+                                alignment: Alignment.bottomRight,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
                                 width: MediaQuery.of(context).size.width * 0.9,
                                 /*  height: 140,*/
                                 child: AutoSizeText(
-                                  '$dispresult\n',
-                                  textAlign: TextAlign.left,
+                                  '$value',
+                                  textAlign: TextAlign.right,
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 43, 39, 38),
                                     fontSize: 50,
                                   ),
                                   maxLines: 2,
@@ -144,82 +176,115 @@ class _CalculatorState extends State<Calculator> {
                                 ),
                               ),
                             ),
-                            /*  Container(
-                              height: 100,
-                              child: FittedBox(
-                                child: Text(
-                                  "$dispresult\n"
-                                  //textAlign: TextAlign.left,
-                                ),
-                              ),
-                            )*/
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(2),
-                              child: SizedBox(
-                                // width: double.maxFinite,
-                                /*  height: 140,*/
-                                child: AutoSizeText(
-                                  '$value',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 90,
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Icon(
+                    Icons.timer,
+                    color: Color.fromARGB(255, 109, 107, 107),
+                    size: 24.0,
+                    //semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Icon(
+                    Icons.scale,
+                    color: Color.fromARGB(255, 109, 107, 107),
+                    size: 25.0,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Icon(
+                    Icons.calculate,
+                    color: Color.fromARGB(255, 109, 107, 107),
+                    size: 25.0,
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: IconButton(
+                          onPressed: () {
+                            calculation('d');
+                          },
+                          icon: Icon(Icons.backspace_outlined),
+                          iconSize: 28,
+                          color: Color.fromARGB(225, 10, 209, 37),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('A', Color.fromARGB(255, 208, 7, 192), Colors.white),
-                calcbutton('-', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('%', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('/', Colors.amber, Colors.white),
+                calcbutton('C', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 226, 5, 5)),
+                calcbutton('-', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(225, 10, 209, 37)),
+                calcbutton('%', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(225, 10, 209, 37)),
+                calcbutton('/', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(225, 10, 209, 37)),
               ],
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('7', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('8', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('9', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('x', Colors.amber, Colors.white),
+                calcbutton('7', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('8', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('9', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('x', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(225, 10, 209, 37)),
               ],
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('4', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('5', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('6', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('-', Colors.amber, Colors.white),
+                calcbutton('4', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('5', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('6', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('-', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(225, 10, 209, 37)),
               ],
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                calcbutton('1', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('2', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('3', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('+', Colors.amber, Colors.white),
+                calcbutton('1', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('2', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('3', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('+', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(225, 10, 209, 37)),
               ],
             ),
 
@@ -227,40 +292,43 @@ class _CalculatorState extends State<Calculator> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 //this is button Zero
-                calcbutton("0", Color.fromARGB(255, 40, 38, 38), Colors.white),
-                calcbutton('.', Color.fromARGB(255, 40, 38, 38), Colors.white),
-                //  calcbutton('=',Colors.amber,Colors.white),
+                calcbutton("0", Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                calcbutton('.', Color.fromARGB(255, 236, 232, 232),
+                    Color.fromARGB(255, 43, 39, 38)),
+                // calcbutton('()',Color.fromARGB(255, 236, 232, 232),Color.fromARGB(255, 43, 39, 38)),
                 Container(
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromARGB(255, 40, 38, 38),
-                    border: Border.all(width: 2),
-                  ),
-                  child: GestureDetector(
+                      //shape: BoxShape.circle,
+                      //color: Color.fromARGB(255, 251, 249, 249),
+                      //border: Border.all(width: 0),
+                      ),
+                  child: InkWell(
                     onLongPress: () {
-                      // Do something on long press
+                      // Show pop-up menu here
+
+                      print("long press activated");
                       check = 0;
-                      print("normal calculator");
+                      mcheck = 0;
+                      acheck = 0;
+                      print("normal caculator");
                     },
                     child: ElevatedButton(
+                      child: Text(
+                        '()',
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Color.fromARGB(255, 43, 39, 38),
+                        ),
+                      ),
                       onPressed: () {
-                        // Do something on button press
-                        calculation('d');
+                        // Handle normal button press here
+                        //calculation('=');
                       },
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: Row(
-                            children: [
-                              Icon(Icons.arrow_back),
-                              Text(
-                                "",
-                                style: TextStyle(fontSize: 50),
-                              ),
-                            ],
-                          )),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.amber,
-                        minimumSize: Size(75, 50),
+                        elevation: 0.0,
+                        primary: Color.fromARGB(255, 236, 232, 232),
+                        // minimumSize: Size(75, 50),
                         //fixedSize: Size(75, 75),
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(20),
@@ -268,6 +336,33 @@ class _CalculatorState extends State<Calculator> {
                     ),
                   ),
                 ),
+                /*  ElevatedButton(
+                  onPressed: () {},
+                  child: Container(
+                    //width: double.infinity,
+                    //height: double.infinity,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        //SizedBox(width: 8),
+                        Text(
+                          "()",
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: Color.fromARGB(255, 43, 39, 38)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 236, 232, 232),
+                    minimumSize: Size(75, 50),
+                    //fixedSize: Size(75, 75),
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(20),
+                  ),
+                ),*/
                 /* child:ElevatedButton(
                       onPressed: () {
                         /* Your code here */
@@ -304,8 +399,8 @@ class _CalculatorState extends State<Calculator> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromARGB(255, 40, 38, 38),
-                    border: Border.all(width: 2),
+                    //color: Color.fromARGB(255, 251, 249, 249),
+                    // border: Border.all(width: 0),
                   ),
                   child: InkWell(
                     onLongPress: () {
@@ -317,7 +412,7 @@ class _CalculatorState extends State<Calculator> {
                       child: Text(
                         '=',
                         style: TextStyle(
-                          fontSize: 50,
+                          fontSize: 35,
                           color: Colors.white,
                         ),
                       ),
@@ -326,8 +421,9 @@ class _CalculatorState extends State<Calculator> {
                         calculation('=');
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.amber,
-                        minimumSize: Size(75, 50),
+                        elevation: 0.0,
+                        primary: Color.fromARGB(225, 10, 209, 37),
+                        // minimumSize: Size(75, 50),
                         //fixedSize: Size(75, 75),
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(20),
@@ -350,6 +446,9 @@ class _CalculatorState extends State<Calculator> {
   double numTwo = 0;
   int check = 0;
   int res = 0;
+  int acheck = 0;
+  int mcheck = 0;
+  int change = 0;
   dynamic result = '';
   dynamic dispresult = '';
   dynamic finalResult = '';
@@ -358,12 +457,37 @@ class _CalculatorState extends State<Calculator> {
   dynamic preOpr = '';
   dynamic value = '';
   void calculation(btnText) {
+    if (btnText == '=' || btnText == '%') {
+      res = 1;
+    } else {
+      res = 0;
+      print("status $res");
+    }
+    print("mcheck is $mcheck");
+
+    print("acheck is $acheck");
+    if (btnText == '+' && check == 1 && acheck == 1 && mcheck == 0) {
+      acheck = 1;
+      print("addiction manipulation activated acheck $acheck");
+      mcheck = 0;
+      change = 1;
+    }
+    if (btnText == 'x' && check == 1 && acheck == 0 && mcheck == 1) {
+      mcheck = 1;
+      print("multiply manipulation activated acheck $mcheck");
+      print("status of acheck $acheck");
+      acheck = 0;
+      change = 1;
+    }
     print(check);
     print("button text $btnText");
-    if (btnText != null && btnText != 'A' && btnText != "=" && btnText != 'd') {
+    if (btnText != null && btnText != 'C' && btnText != "=" && btnText != 'd') {
       dispresult = dispresult + btnText;
     }
-    if (btnText == 'A') {
+    if (btnText == '%') {
+      dispresult = "";
+    }
+    if (btnText == 'C') {
       text = '0';
       numOne = 0;
       numTwo = 0;
@@ -372,9 +496,12 @@ class _CalculatorState extends State<Calculator> {
       dispresult = '';
       opr = '';
       preOpr = '';
+      change = 0;
+      //  acheck = 0;
+      //   mcheck = 0;
     } else if (opr == '=' && btnText == '=') {
       print("eqaul value of check is $check");
-      if (check == 1) {
+      if (check == 1 && acheck == 1 || check == 1 && mcheck == 1) {
         finalResult = dupResult;
         print("final Result at check funtion check activate$finalResult");
       } else {
@@ -400,7 +527,8 @@ class _CalculatorState extends State<Calculator> {
       }
 
       if (opr == '+') {
-        if (check == 1) {
+        if ((check == 1 && acheck == 1 || check == 1 && mcheck == 1) &&
+            change == 1) {
           print("final result is manipulated");
           finalResult = dupResult;
         } else {
@@ -408,22 +536,24 @@ class _CalculatorState extends State<Calculator> {
           finalResult = add();
         }
       } else if (opr == '-') {
-        if (check == 1) {
+        if ((check == 1 && acheck == 1 || check == 1 && mcheck == 1) &&
+            change == 1) {
           print("final result is manipulated");
           finalResult = dupResult;
         } else {
           finalResult = sub();
         }
       } else if (opr == 'x') {
-        if (check == 1) {
+        if ((check == 1 && acheck == 1 || check == 1 && mcheck == 1) &&
+            change == 1) {
           print("final result is manipulated");
           finalResult = dupResult;
         } else {
           finalResult = mul();
         }
       } else if (opr == '/') {
-        finalResult = div();
-        if (check == 1) {
+        //finalResult = div();
+        if (check == 1 && acheck == 1 || check == 1 && mcheck == 1) {
           print("final result is manipulated");
           finalResult = dupResult;
         } else {
@@ -460,7 +590,7 @@ class _CalculatorState extends State<Calculator> {
       print("intermediate disp result is $dispresult");
       result = result + btnText;
       // finalResult = dispresult;
-      if (btnText == "=") {
+      if (btnText == "="||btnText == "%") {
         finalResult = result;
         print(finalResult);
       }
@@ -468,7 +598,12 @@ class _CalculatorState extends State<Calculator> {
 
     setState(() {
       dispresult;
-      value = finalResult;
+      if (res == 0) {
+        value = "";
+      } else {
+        value = finalResult;
+      }
+      //  value = finalResult;
     });
   }
 
