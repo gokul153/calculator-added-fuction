@@ -86,7 +86,7 @@ class _CalculatorState extends State<Calculator> {
           child: Text(
             btntxt,
             style: TextStyle(
-              fontSize: 35,
+              fontSize: 30,
               color: txtcolor,
             ),
           ),
@@ -130,7 +130,7 @@ class _CalculatorState extends State<Calculator> {
                       //crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(10),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.9,
                             height: MediaQuery.of(context).size.height * 0.1,
@@ -168,7 +168,7 @@ class _CalculatorState extends State<Calculator> {
                                   '$value',
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
-                                    color: Color.fromARGB(255, 43, 39, 38),
+                                    color: Color(0xff575757),
                                     fontSize: 50,
                                   ),
                                   maxLines: 2,
@@ -191,7 +191,7 @@ class _CalculatorState extends State<Calculator> {
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Icon(
                     Icons.timer,
-                    color: Color.fromARGB(255, 109, 107, 107),
+                    color: Color(0xff9b9b9b),
                     size: 24.0,
                     //semanticLabel: 'Text to announce in accessibility modes',
                   ),
@@ -200,7 +200,7 @@ class _CalculatorState extends State<Calculator> {
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Icon(
                     Icons.scale,
-                    color: Color.fromARGB(255, 109, 107, 107),
+                    color: Color(0xff9b9b9b),
                     size: 25.0,
                   ),
                 ),
@@ -208,7 +208,7 @@ class _CalculatorState extends State<Calculator> {
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Icon(
                     Icons.calculate,
-                    color: Color.fromARGB(255, 109, 107, 107),
+                    color: Color(0xff9b9b9b),
                     size: 25.0,
                   ),
                 ),
@@ -224,9 +224,8 @@ class _CalculatorState extends State<Calculator> {
                           },
                           icon: Icon(Icons.backspace_outlined),
                           iconSize: 28,
-                          color: Color.fromARGB(225, 10, 209, 37),
-                        ),
-                      ),
+                          color: Color(0xff518d1c),
+                        ),                      ),
                     ],
                   ),
                 ),
@@ -238,11 +237,11 @@ class _CalculatorState extends State<Calculator> {
                 calcbutton('C', Color.fromARGB(255, 236, 232, 232),
                     Color.fromARGB(255, 226, 5, 5)),
                 calcbutton('-', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(225, 10, 209, 37)),
+                    Color(0xff518d1c)),
                 calcbutton('%', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(225, 10, 209, 37)),
+                    Color(0xff518d1c)),
                 calcbutton('/', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(225, 10, 209, 37)),
+                    Color(0xff518d1c)),
               ],
             ),
 
@@ -250,13 +249,13 @@ class _CalculatorState extends State<Calculator> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 calcbutton('7', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('8', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('9', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('x', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(225, 10, 209, 37)),
+                    Color(0xff518d1c)),
               ],
             ),
 
@@ -264,13 +263,13 @@ class _CalculatorState extends State<Calculator> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 calcbutton('4', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('5', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('6', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('-', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(225, 10, 209, 37)),
+                    Color(0xff518d1c)),
               ],
             ),
 
@@ -278,13 +277,13 @@ class _CalculatorState extends State<Calculator> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 calcbutton('1', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('2', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('3', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('+', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(225, 10, 209, 37)),
+                    Color(0xff518d1c)),
               ],
             ),
 
@@ -293,9 +292,9 @@ class _CalculatorState extends State<Calculator> {
               children: <Widget>[
                 //this is button Zero
                 calcbutton("0", Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 calcbutton('.', Color.fromARGB(255, 236, 232, 232),
-                    Color.fromARGB(255, 43, 39, 38)),
+                    Color(0xff575757)),
                 // calcbutton('()',Color.fromARGB(255, 236, 232, 232),Color.fromARGB(255, 43, 39, 38)),
                 Container(
                   decoration: BoxDecoration(
@@ -318,7 +317,7 @@ class _CalculatorState extends State<Calculator> {
                         '()',
                         style: TextStyle(
                           fontSize: 35,
-                          color: Color.fromARGB(255, 43, 39, 38),
+                          color: Color(0xff575757),
                         ),
                       ),
                       onPressed: () {
@@ -422,7 +421,7 @@ class _CalculatorState extends State<Calculator> {
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0.0,
-                        primary: Color.fromARGB(225, 10, 209, 37),
+                        primary: Color(0xff518d1c),
                         // minimumSize: Size(75, 50),
                         //fixedSize: Size(75, 75),
                         shape: CircleBorder(),
